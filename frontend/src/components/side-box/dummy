@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import postmark from 'postmark'; // Assuming you have installed the 'postmark' package
+
+const SendEmailForm = () => {
+  const [sender, setSender] = useState('');
+  const [recipient, setRecipient] = useState('');
+  const [subject, setSubject] = useState('');
+  const [body, setBody] = useState('');
+
+  const sendEmail = async () => {
+    try {
+      const client = new postmark.ServerClient('YOUR_POSTMARK_API_KEY');
+      const response = await client.sendEmail({
+        From: sender,
+        To: recipient,
+        Subject: subject,
+        TextBody: body,
+      });
+
+      console.log('Email sent successfully:', response);
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendEmail();
+  };
+
+  return (
+    <div>
+      <h2>Send Email</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Sender:
+          <input type="email" value={sender} onChange={(e) => setSender(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Recipient:
+          <input type="email" value={recipient} onChange={(e) => setRecipient(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Subject:
+          <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Body:
+          <textarea value={body} onChange={(e) => setBody(e.target.value)} />
+        </label>
+        <br />
+        <button type="submit">Send Email</button>
+      </form>
+    </div>
+  );
+};
+
+export default SendEmailForm;
