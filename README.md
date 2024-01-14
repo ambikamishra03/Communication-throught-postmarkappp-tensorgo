@@ -1,10 +1,14 @@
 frontend   ------> npm install ,npm start
 backend   ------> npm install ,npm start
-.env(frontend)  -----> REACT_APP_API_URL = http://localhost:8080
+
+.env(frontend)  -----> 
+1-> REACT_APP_API_URL = http://localhost:8080
 
 .env(backend)  ----->  
-CLIENT_ID
-CLIENT_SECRET
-CALLBACK_URL = "/auth/google/callback"
-CLIENT_URL = http://localhost:3000/
-API_KEY
+1->CLIENT_ID ,
+2->CLIENT_SECRET ,
+3-> CALLBACK_URL = "/auth/google/callback" ,
+
+4-> CLIENT_URL = http://localhost:3000/ ,
+
+5 -> API_KEY
